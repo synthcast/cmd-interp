@@ -21,16 +21,15 @@ int main()
 	while(1) {
 	printf("\n%s@%s: ",username, hostname);
 	fgets(command, 256, stdin);
-	/* command cleanup */
-	char *cmd = strtok(command, "\n");
-	/* ls */
-	if(strstr(command, lscheck) != NULL && strstr(command, " ") != NULL)  {
+	if(strstr(command, lscheck) != NULL) {
 	char *arg = strtok(command, split);
-	arg = strtok(NULL, split);
-	if(arg != NULL) {
+	char *arg2 = arg;
+	arg2 = strtok(NULL, split);
+	arg2 = strtok(arg2, "\n");
+	if(arg2 != NULL) {
 	DIR *dir;
 	struct dirent *contents;
-	dir = opendir(arg);
+	dir = opendir(arg2);
 	while (contents = readdir(dir)) {
 	files++;
 	printf("%s\n",contents->d_name);
@@ -38,8 +37,7 @@ int main()
 	closedir(dir);
 	continue;
 	}
-	}
-	else if(strcmp(command,"ls") == 0){
+	else {
 	DIR *dir;
 	struct dirent *contents;
 	dir = opendir(".");
@@ -50,17 +48,15 @@ int main()
 	closedir(dir);
 	continue;
 	}
-	/* whoami */
+	}
 	else if(strcmp(command,"whoami") == 0) {
 	printf("%s",username);
 	continue;
 	}
-	/* exit */
 	else if(strcmp(command,"exit") == 0) {
-	printf("\nexiting...\n");
+	printf("\nthank you for trying nOS\n");
 	break;
 	}
-	/* checking user input */
 	else {
 	printf("\ncommand '%s' not found\n", command);
 	continue;
