@@ -22,7 +22,7 @@ int main()
 
 	// commands
 	while(1) {
-	printf("\n\%s\%s@%s\%s: ",color1, username, hostname, color2);
+	printf("\n%s%s@%s%s: ",color1, username, hostname, color2);
 	fgets(command, 256, stdin);
 	/* command cleanup */
 	char *cmd = strtok(command, "\n");
