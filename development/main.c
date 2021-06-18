@@ -6,20 +6,23 @@
 
 int main()
 {
-	// hostname and username
+	// hostname, username & prompt color
 	char hostname[100];
 	gethostname(hostname, 100);
 	char username[100];
 	getlogin_r(username, 100);
+	char color1[] = "\033[48;5;89;38;5;27m";
+	char color2[] = "\033[00m";
+
 	// command line, directories & checks
 	char command[256];
 	char lscheck[] = "ls";
 	char split[] = " ";
 	int files = 0;
-	
+
 	// commands
 	while(1) {
-	printf("\n%s@%s: ",username, hostname);
+	printf("\n\%s\%s@%s\%s: ",color1, username, hostname, color2);
 	fgets(command, 256, stdin);
 	/* command cleanup */
 	char *cmd = strtok(command, "\n");
